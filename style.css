@@ -1,0 +1,62 @@
+header {
+    background-color: #EC362D;
+    color: #FFFFFF;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 35px;
+    text-align: center;
+    height: 70px;
+    box-shadow: 2px 2px 2px gray;
+}
+
+header h1 {
+    padding-top: 15px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.criar-quizz {
+    border: 1px dashed #d4d4d4;
+    color: #b9b9b9;
+    width: 1050px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    text-align: center;
+}
+
+p {
+    font-family: 'Roboto';
+    font-size: 20px;
+}
+
+.botao-criar {
+    border: 1px dashed #ec362d;
+    border-radius: 25px;
+    color: #ec362d;
+    margin-top: 20px;
+    background-color: transparent;
+    width: 135px;
+    height: 40px;
+}
+
+.opcoes-quizz {
+    margin-top: 80px;
+}
+
+.opcoes-quizz p {
+    color: #000000;
+    font-weight: bold;
+}
+
+.linha-quizz {
+    display: flex;
+}
+

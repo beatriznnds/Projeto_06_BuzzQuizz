@@ -21,6 +21,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #FAFAFA;
 }
 
 .criar-quizz {
@@ -36,7 +37,7 @@ main {
     text-align: center;
 }
 
-p {
+p, h2 {
     font-family: 'Roboto';
     font-size: 20px;
 }
@@ -84,4 +85,72 @@ p {
     bottom: 10px;
     left: 15px;
     z-index: 2;
+}
+
+.quizz-atual{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("./img/Rectangle42.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 227px;
+    width: 100%;
+    margin-bottom: 42px;
+}
+
+.quizz-nome {    
+    color: white;
+    font-family: 'Roboto';
+    font-size: 39px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.quizz-card{
+    background-color: white;
+    padding: 20px 36px;
+    width: 759px;
+}
+
+.quizz-pergunta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 138px;
+    width: 688px;
+    background-color: #434CA0;
+    margin-bottom: 20px;
+}
+
+.quizz-pergunta span{
+    font-family: 'Roboto';
+    color: white;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.quizz-opcoes{
+    width: 688px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.quizz-opcao{
+    display: flex;
+    flex-direction: column;
+}
+
+.quizz-opcao img{
+    height: 176px;
+    width: 330px;
+}
+
+.quizz-opcao span{
+    font-family: 'Roboto';
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
 }

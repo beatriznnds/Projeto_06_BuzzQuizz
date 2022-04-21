@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,7 +23,7 @@
             <p>Você não criou nenhum <br />quizz ainda :(</p>
           </div>
           <div>
-            <button type="button" class="botao-criar">
+            <button type="button" class="botao-criar" onclick="paginaCriarQuizz(this)">
               <p>Criar Quizz</p>
             </button>
           </div>
@@ -76,12 +76,12 @@
         </div>
       </section>
 
-      <section class="pagina-2">
+      <section class="pagina-2 escondido">
         <div class="quizz-usuario">
           <div class="linha-pessoal">
             <div class="intro-quizz">
               <p>Seus quizzes</p>
-              <ion-icon class="botao-plus" name="add-circle-sharp"></ion-icon>
+              <ion-icon class="botao-plus" name="add-circle-sharp" onclick="paginaCriarQuizz(this)"></ion-icon>
             </div>
           </div>
           <div class="linha-pessoal">
@@ -150,7 +150,7 @@
       </section>
 
       <section>
-        <div class="pagina-3">
+        <div class="pagina-3 escondido">
           <div class="quizz-atual">
             <div class="quizz-nome">Isso é um quizz?</div>
           </div>
@@ -181,20 +181,20 @@
       </section>
 
       <section>
-        <container class="pagina-8">
+        <container class="pagina-8 escondido">
           <p>Comece pelo começo</p>
           <div>
-            <input type="text" placeholder="Título do seu quizz" />
-            <input type="text" placeholder="URL da imagem do seu quizz" />
-            <input type="text" placeholder="Quantidade de perguntas do quizz" />
-            <input type="text" placeholder="Quantidade de níveis do quizz" />
+            <input type="text" class="titulo-quizz" placeholder="Título do seu quizz" />
+            <input type="text" class="capa-quizz" placeholder="URL da imagem do seu quizz" />
+            <input type="text" class="qtd-perguntas" placeholder="Quantidade de perguntas do quizz" />
+            <input type="text" class="qtd-niveis" placeholder="Quantidade de níveis do quizz" />
           </div>
-          <button type="button">Prosseguir para criar perguntas</button>
+          <button type="button" onclick="proximaPagina8(this)">Prosseguir para criar perguntas</button>
         </container>
       </section>
 
       <section>
-        <container class="pagina-9">
+        <container class="pagina-9 escondido">
           <h5>Crie suas perguntas</h5>
           <div>
             <p>Pergunta 1</p>
@@ -234,7 +234,7 @@
       </section>
 
       <section>
-        <container class="pagina-10">
+        <container class="pagina-10 escondido">
           <h5>Agora, decida os níveis</h5>
           <div>
             <p>Nível 1</p>
@@ -256,7 +256,7 @@
       </section>
 
       <section>
-        <container class="pagina-11">
+        <container class="pagina-11 escondido">
           <h5>Seu quizz está pronto!</h5>
           <div class="lista-quizz">
             <img src="img/Rectangle 36.png" />

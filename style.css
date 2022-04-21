@@ -5,6 +5,7 @@
 header {
     background-color: #EC362D;
     color: #FFFFFF;
+    width: 100%;
     font-family: 'Roboto';
     font-weight: bold;
     font-size: 35px;
@@ -72,7 +73,7 @@ p {
     padding: 5px;
 }
 
-.img {
+img {
     width: 340px;
     height: 180px;
     border-radius: 2px;
@@ -83,8 +84,8 @@ p {
 .nome-quizz p {
     color: #FFFFFF;
     position: absolute;
-    bottom: 10px;
-    left: 15px;
+    bottom: 20px;
+    left: 20px;
     z-index: 2;
 }
 
@@ -92,6 +93,10 @@ p {
     font-family: 'Roboto';
     font-size: 20px;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 1050px;
 }
 
 .botao-plus {
@@ -115,16 +120,138 @@ p {
     align-items: center;
     justify-content: space-between;
     padding-left: 5px;
+    flex-wrap: wrap;
 }
 
-@media (max-width: 767px) {
+.pagina-8 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    flex-wrap: wrap;
+}
+
+.pagina-8 p {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+input {
+    all: unset;
+    font-family: 'Roboto';
+    border: 1px solid #d1d1d1;
+    font-size: 20px;
+    font-style: italic;
+    width: 565px;
+    height: 45px;
+    text-align: left;
+    display: flex;
+    margin: 10px;
+}
+
+::placeholder {
+    padding-left: 20px;
+}
+
+button {
+    all: unset;
+    font-family: 'Roboto';
+    background-color: #EC362D;
+    color: #ffffff;
+    font-size: 20px;
+    width: 370px;
+    height: 54px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.pagina-9, .pagina-10, .pagina-11 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    font-family: 'Roboto';
+    align-items: center;
+}
+
+.pagina-11 {
+    margin-bottom: 80px;
+}
+
+h5 {
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.pagina-9 p, .pagina-10 p {
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.pagina-9 div, .pagina-10 div {
+    margin-bottom: 20px;
+}
+
+.pagina-9 ion-icon, .pagina-10 ion-icon {
+    font-size: 30px;
+}
+
+.mais-perguntas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 585px;
+    height: 50px;
+}
+
+.pagina-11 h6 {
+    font-size: 20px;
+    color: #818181;
+
+}
+
+.pagina-11 img {
+    width: 500px;
+    height: 270px;
+}
+
+.pagina-11 button {
+    width: 220px;
+    height: 45px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+@media (max-width: 700px) {
     .criar-quizz {
-        width: 400px;
+        max-width: 400px;
+    }
+    .titulo-pag {
+        margin-left: 120px;
     }
 
+    .intro-quizz {
+        margin-left: 350px;
+    }
 
-    .titulo-pag{
-        margin-left: 80px;
+    .quizz-pessoal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        font-size: 45px;
+    }
+
+    input {
+        width: 400px;
+        height: 45px;
     }
 
 }

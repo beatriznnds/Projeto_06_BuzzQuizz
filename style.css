@@ -274,13 +274,27 @@ h5 {
     font-size: 30px;
 }
 
+.perguntas-quizz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .mais-perguntas {
     display: flex;
+    flex-direction: column;
+    width: 500px;
+    justify-content: space-around;
     flex-wrap: wrap;
+}
+
+.perguntas-alinhamentos {
+    display: flex;
+    flex-wrap: wrap;
+    width: 575px;
     justify-content: space-between;
-    max-width: 565px;
-    width: 100%;
-    height: 50px;
+    align-items: center;
 }
 
 .pagina-11 h6 {

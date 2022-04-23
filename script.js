@@ -56,9 +56,40 @@ function proximaPagina8 (clique) {
 
 
 function criarQuizzPagina9 () {
+    let pergunta1Quizz = document.querySelector(".perguntas-quizz");
+    pergunta1Quizz.innerHTML += 
+    `<h5>Crie suas perguntas</h5>          
+    <div>
+      <p>Pergunta 1</p>
+      <input type="text" class="texto-pergunta0" placeholder="Texto da pergunta" />
+      <input type="text" class="cor-fundo-pergunta0" placeholder="Cor de fundo da pergunta" />
+    </div>
+    <div>
+      <p>Resposta correta</p>
+      <input type="text" class="texto-correta0" placeholder="Resposta correta" />
+      <input type="text" class="img-correta0" placeholder="URL da imagem do seu quizz" />
+    </div>
+    <div>
+      <p>Respostas incorretas</p>
+      <div>
+          <input type="text" class="resposta-incorreta01" placeholder="Resposta incorreta 1" />
+          <input type="text" class="img-incorreta01" placeholder="URL da Imagem 1" />
+      </div>
+      <div>
+          <input type="text" class="resposta-incorreta02" placeholder="Resposta incorreta 2" />
+          <input type="text" class="img-incorreta02" placeholder="URL da Imagem 2" />
+      </div>
+      <div>
+          <input type="text" class="resposta-incorreta03" placeholder="Resposta incorreta 3" />
+          <input type="text" class="img-incorreta03" placeholder="URL da Imagem 3" />
+      </div>
+      <div>
+      <input type="text" class="resposta-incorreta04" placeholder="Resposta incorreta " />
+      <input type="text" class="img-incorreta04" placeholder="URL da Imagem 4" />
+      </div>
+    </div>`     
     perguntasQuizz = document.querySelector(".perguntas-quizz");
-    perguntasQuizz.innerHTML = "";
-    for (let i = 1; i <= qtdPerguntasQuizz - 1; i++) {
+    for (let i = 1; i <= qtdPerguntasQuizz - 1; i++) {        
         perguntasQuizz.innerHTML +=
         `<div class="mais-perguntas${i}">
             <div class="perguntas-alinhamentos">
@@ -76,6 +107,7 @@ function criarQuizzPagina9 () {
 
 function aprovarPerguntas () {
     for (let i =0; i < qtdPerguntasQuizz; i++) {
+        console.log(i);
         textoPergunta = document.querySelector(`.texto-pergunta${i}`).value;
         corPergunta = document.querySelector(`.cor-fundo-pergunta${i}`).value;
         textoCorreto = document.querySelector(`.texto-correta${i}`).value;
@@ -88,7 +120,7 @@ function aprovarPerguntas () {
         imgIncorreto3 = document.querySelector(`.img-incorreta${i}3`).value;
         textoIncorreto4 = document.querySelector(`.resposta-incorreta${i}4`).value;
         imgIncorreto4 = document.querySelector(`.img-incorreta${i}4`).value;
-        if (textoPergunta.length < 20 || checarHex === false || textoCorreto1 === "" || textoIncorreto1 === "" || ValidURL(imgCorreto) === false || ValidURL(imgIncorreto) === false) {
+        if (textoPergunta.length < 20 || checarHex === false || textoCorreto === "" || textoIncorreto1 === "" || ValidURL(imgCorreto) === false || ValidURL(imgIncorreto1) === false) {
             alert('Preencha os campos corretamente.');
             textoPergunta.innerHTML = "";
             corPergunta.innerHTML = "";
@@ -176,4 +208,77 @@ function checarHex () {
 function proximaPagina9 () {
     document.querySelector(".pagina-9").classList.add("escondido");
     document.querySelector(".pagina-10").classList.remove("escondido");
+    abrirPagina10();
+}
+
+function abrirPagina10 () {
+    let layoutPagina10 = document.querySelector(".pagina-10");
+    layoutPagina10.innerHTML = "";
+    layoutPagina10.innerHTML += 
+    `<h5>Agora, decida os níveis</h5>          
+    <div>
+      <p>Nível 1</p>
+      <input type="text" class="titulo-nivel0" placeholder="Título do nível" />
+      <input type="text" class="porcentagem-nivel0" placeholder="% de acerto mínimo" />
+      <input type="text" class="img-nivel0" placeholder="URL da imagem do nível" />
+      <input type="text" class="descricao-nivel0" placeholder="Descrição do nível" />
+    </div>`
+    for (let i = 1; i <= qtdNiveisQuizz - 1; i++) {
+        layoutPagina10.innerHTML += 
+        `<div class="mais-perguntas${i}">
+            <div class="perguntas-alinhamentos">
+                <p>Nível ${i + 1}</p>       
+                <div onclick="abrirCaixaNiveis(${i})">
+                    <ion-icon name="create-outline"></ion-icon>
+                </div>        
+            </div>
+        </div>`
+    }
+    layoutPagina10.innerHTML += 
+    `<button type="button" onclick="aprovarNiveis(this)">Finalizar Quizz</button>`
+
+}
+
+function abrirCaixaNiveis (i) {
+    console.log(`abrirCaixasNiveis1`, i)
+    let opcaoNiveis = document.querySelector(`.mais-perguntas${i}`);
+    opcaoNiveis.innerHTML = "";
+    opcaoNiveis.innerHTML +=
+    `<div>
+        <p>Nível ${i + 1}</p>
+        <input type="text" class="titulo-nivel${i}" placeholder="Título do nível" />
+        <input type="text" class="porcentagem-nivel${i}" placeholder="% de acerto mínimo" />
+        <input type="text" class="img-nivel${i}" placeholder="URL da imagem do nível" />
+        <input type="text" class="descricao-nivel${i}" placeholder="Descrição do nível" />
+    </div>`
+
+}
+
+function aprovarNiveis () {
+    for (let i = 0; i <= qtdNiveisQuizz; i++) {
+        const tituloNivel = document.querySelector(`.titulo-nivel${i}`).value;
+        const porcentagemNivel = document.querySelector(`.porcentagem-nivel${i}`).value;
+        const imagemNivel = document.querySelector(`.img-nivel${i}`).value;
+        const descricaoNivel = document.querySelector(`descricao-nivel${i}`).value;
+        if (tituloNivel.length < 10 || porcentagemNivel> 100 ||  ValidURL(imagemNivel) === false || descricaoNivel.length < 30){
+            alert('Preencha os campos corretamente.');
+            tituloNivel.innerHTMl = "";
+            porcentagemNivel.innerHTMl = "";
+            imagemNivel.innerHTMl = "";
+            descricaoNivel.innerHTMl = "";
+        }
+        else {
+            //funcaoparacarregapaginasucesso
+        }
+    }
+
+}
+
+function ValidURL(imagemNivel) {
+    let regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    if(!regex .test(imagemNivel)) {
+      return false;
+    } else {
+      return true;
+    }
 }

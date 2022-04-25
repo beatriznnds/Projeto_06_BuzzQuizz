@@ -281,7 +281,7 @@ h5 {
     width: 100%;
 }
 
-.mais-perguntas {
+.mais-perguntas, .mais-niveis {
     display: flex;
     flex-direction: column;
     width: 500px;

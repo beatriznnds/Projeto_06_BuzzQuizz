@@ -15,6 +15,12 @@ let imgIncorreto3 = "";
 let textoIncorreto4 = "";
 let imgIncorreto4 = "";
 let perguntasQuizz;
+let tituloNivel = "";
+let porcentagemNivel;
+let imagemNivel = "";
+let descricaoNivel;
+
+
 
 function paginaCriarQuizz () {    
     document.querySelector(".pagina-1").classList.add("escondido")
@@ -119,7 +125,7 @@ function aprovarPerguntas () {
         imgIncorreto3 = document.querySelector(`.img-incorreta${i}3`).value;
         textoIncorreto4 = document.querySelector(`.resposta-incorreta${i}4`).value;
         imgIncorreto4 = document.querySelector(`.img-incorreta${i}4`).value;
-        if (textoPergunta.length < 20 || checarHex === false || textoCorreto === "" || textoIncorreto1 === "" || ValidURL(imgCorreto) === false || ValidURL(imgIncorreto1) === false) {
+        if (textoPergunta.length < 20 || checarHex === false || textoCorreto === "" || textoIncorreto1 === "" || ValidURL(imgCorreto) === false || ValidURL(imgIncorreto1, imgIncorreto2, imgIncorreto3, imgIncorreto4) === false) {
             alert('Preencha os campos corretamente.');
             textoPergunta.innerHTML = "";
             corPergunta.innerHTML = "";
@@ -224,7 +230,7 @@ function abrirPagina10 () {
     </div>`
     for (let i = 1; i <= qtdNiveisQuizz - 1; i++) {
         layoutPagina10.innerHTML += 
-        `<div class="mais-perguntas${i}">
+        `<div class="mais-niveis${i}">
             <div class="perguntas-alinhamentos">
                 <p>Nível ${i + 1}</p>       
                 <div>
@@ -239,8 +245,7 @@ function abrirPagina10 () {
 }
 
 function abrirCaixaNiveis (i) {
-    console.log(`abrirCaixasNiveis1`, i)
-    let opcaoNiveis = document.querySelector(`.mais-perguntas${i}`);
+    let opcaoNiveis = document.querySelector(`.mais-niveis${i}`);
     opcaoNiveis.innerHTML = "";
     opcaoNiveis.innerHTML +=
     `<div>
@@ -254,11 +259,11 @@ function abrirCaixaNiveis (i) {
 }
 
 function aprovarNiveis () {
-    for (let i = 0; i <= qtdNiveisQuizz; i++) {
-        const tituloNivel = document.querySelector(`.titulo-nivel${i}`).value;
-        const porcentagemNivel = document.querySelector(`.porcentagem-nivel${i}`).value;
-        const imagemNivel = document.querySelector(`.img-nivel${i}`).value;
-        const descricaoNivel = document.querySelector(`descricao-nivel${i}`).value;
+    for (let i = 0; i < qtdNiveisQuizz; i++) {
+        tituloNivel = document.querySelector(`.titulo-nivel${i}`).value;
+        porcentagemNivel = document.querySelector(`.porcentagem-nivel${i}`).value;
+        imagemNivel = document.querySelector(`.img-nivel${i}`).value;
+        descricaoNivel = document.querySelector(`.descricao-nivel${i}`).value;
         if (tituloNivel.length < 10 || porcentagemNivel > 100 ||  ValidURL(imagemNivel) === false || descricaoNivel.length < 30){
             alert('Preencha os campos corretamente.');
             tituloNivel.innerHTMl = "";

@@ -30,6 +30,7 @@ section {
 
 .criar-quizz {
     border: 1px dashed #d4d4d4;
+    border-radius: 5px;
     color: #b9b9b9;
     width: 1050px;
     height: 180px;
@@ -57,6 +58,7 @@ p {
 
 .opcoes-quizz {
     margin-top: 80px;
+    width: 1050px;
 }
 
 .opcoes-quizz p {
@@ -73,23 +75,19 @@ p {
 
 .lista-quizz {
     position: relative;
-    padding: 5px;
-}
-
-img {
+    margin: 5px;
     width: 340px;
     height: 180px;
-    border-radius: 2px;
-    z-index: 1;
+    border-radius: 5px;
+    cursor: pointer;
 }
-
 
 .nome-quizz p {
     color: #FFFFFF;
     position: absolute;
     bottom: 20px;
     left: 20px;
-    z-index: 2;
+    z-index: 1;
 }
 
 .quizz-usuario {

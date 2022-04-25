@@ -22,6 +22,39 @@ let descricaoNivel;
 
 
 
+const QuizzAPI = 'https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes'
+let listaQuizzes = [];
+
+let quizzCriado = {
+  title: "",
+  image: "",
+  questions: [],
+  levels: []
+}
+
+function buscarQuizzes() {
+    const promise = axios.get(`${QuizzAPI}`);
+    promise.then(carregarQuizzes);
+}
+
+buscarQuizzes();
+
+function carregarQuizzes(resposta) {
+    listaQuizzes = resposta.data;
+    const adicionaQuizz = document.querySelector('.linha-quizz')
+    adicionaQuizz.innerHTML = "";
+
+    for(let i=0;i<listaQuizzes.length;i++){
+        let quizz = listaQuizzes[i];
+        adicionaQuizz.innerHTML += `
+        <div class="lista-quizz"  style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz.image}) no-repeat center center / cover;">
+        <div class="nome-quizz">
+            <p>${quizz.title}</p>
+            </div>  
+        </div>`;
+    }
+}
+
 function paginaCriarQuizz () {    
     document.querySelector(".pagina-1").classList.add("escondido")
     document.querySelector(".pagina-2").classList.add("escondido")

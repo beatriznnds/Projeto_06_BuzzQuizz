@@ -107,7 +107,6 @@ function criarQuizzPagina9 () {
 
 function aprovarPerguntas () {
     for (let i =0; i < qtdPerguntasQuizz; i++) {
-        console.log(i);
         textoPergunta = document.querySelector(`.texto-pergunta${i}`).value;
         corPergunta = document.querySelector(`.cor-fundo-pergunta${i}`).value;
         textoCorreto = document.querySelector(`.texto-correta${i}`).value;
@@ -228,8 +227,8 @@ function abrirPagina10 () {
         `<div class="mais-perguntas${i}">
             <div class="perguntas-alinhamentos">
                 <p>Nível ${i + 1}</p>       
-                <div onclick="abrirCaixaNiveis(${i})">
-                    <ion-icon name="create-outline"></ion-icon>
+                <div>
+                    <ion-icon name="create-outline" onclick="abrirCaixaNiveis(${i})")></ion-icon>
                 </div>        
             </div>
         </div>`
@@ -260,7 +259,7 @@ function aprovarNiveis () {
         const porcentagemNivel = document.querySelector(`.porcentagem-nivel${i}`).value;
         const imagemNivel = document.querySelector(`.img-nivel${i}`).value;
         const descricaoNivel = document.querySelector(`descricao-nivel${i}`).value;
-        if (tituloNivel.length < 10 || porcentagemNivel> 100 ||  ValidURL(imagemNivel) === false || descricaoNivel.length < 30){
+        if (tituloNivel.length < 10 || porcentagemNivel > 100 ||  ValidURL(imagemNivel) === false || descricaoNivel.length < 30){
             alert('Preencha os campos corretamente.');
             tituloNivel.innerHTMl = "";
             porcentagemNivel.innerHTMl = "";
@@ -268,7 +267,7 @@ function aprovarNiveis () {
             descricaoNivel.innerHTMl = "";
         }
         else {
-            //funcaoparacarregapaginasucesso
+            carregarPagina11();
         }
     }
 
@@ -281,4 +280,85 @@ function ValidURL(imagemNivel) {
     } else {
       return true;
     }
+}
+
+function carregarPagina11 () {
+    document.querySelector(".pagina-9").classList.add("escondido");
+    document.querySelector(".pagina-10").classList.remove("escondido");
+    enviarQuizz();
+    
+}
+
+function enviarQuizz () {
+    quizzEnivar = {
+        title: tituloQuizz,
+        image: urlImagemQuizz,
+        questions: [
+            {
+                title: document.querySelector(".texto-pergunta0").value,
+                color: document.querySelector(".cor-fundo-pergunta0").value,
+                answers: [
+                    {
+                        text: document.querySelector(".texto-correta0").value,
+                        image: document.querySelector("img-correta0").value,
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: document.querySelector(".texto-incorreta0").value,
+                        image: document.querySelector("img-incorreta0").value,
+                        isCorrectAnswer: false
+                    }
+                ]
+            },
+            {
+                title: textoPergunta,
+                color: corPergunta,
+                answers: [
+                    {
+                        text: textoCorreto,
+                        image: imgCorreto,
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: textoIncorreto1,
+                        image: imgIncorreto1,
+                        isCorrectAnswer: false
+                    },
+                    {
+                        text: textoIncorreto2,
+                        image: imgIncorreto2,
+                        isCorrectAnswer: false
+                    },
+                    {
+                        text: textoIncorreto3,
+                        image: imgIncorreto3,
+                        isCorrectAnswer: false
+                    },
+                    {
+                        text: textoIncorreto4,
+                        image: imgIncorreto4,
+                        isCorrectAnswer: false
+                    }
+                ]
+            },
+
+        ],
+        levels: [
+            {
+                title: document.querySelector(".titulo-nivel0").value,
+                image: document.querySelector(".img-nivel0").value,
+                text: document.querySelector(".descricao-nivel0").value,
+                minValue: 0,
+                value: document.querySelector(".porcentagem-nivel0").value,
+            },
+            {
+                title: tituloNivel,
+                image: imagemNivel,
+                text: descricaoNivel,
+                minValue: 0,
+                value: porcentagemNivel,
+            }
+        ]
+    }
+    const promiseEnvio = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizzEnviar)
 }

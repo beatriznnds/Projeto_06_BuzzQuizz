@@ -430,11 +430,23 @@ function carregarPagina11 () {
 
 function sortearRespostas () {
     respostas = ["texto-correta0", "resposta-incorreta${i}1", "resposta-incorreta${i}2", "resposta-incorreta${i}3", "resposta-incorreta${i}4"];
-    respostas.sort(comparador);
+    const respostasComTexto = respostas.filter(temTexto);
+    respostasComTexto.sort(comparador);
+}
+
+function temTexto (respostas) {
+    if (respostas !== "") {
+        return true;
+    }
+    return false;
 }
 
 function comparador () {
     return Math.random() - 0.5;
+}
+
+function descerCaixaResultado () {
+    setTimeInterval(descerCaixaResultado, 2000).scrollIntoView;
 }
 
 function enviarQuizz () {

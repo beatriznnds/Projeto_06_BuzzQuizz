@@ -19,7 +19,7 @@ let tituloNivel = "";
 let porcentagemNivel;
 let imagemNivel = "";
 let descricaoNivel;
-
+let respostas = [];
 
 
 const QuizzAPI = 'https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes'
@@ -327,6 +327,15 @@ function carregarPagina11 () {
     
 }
 
+function sortearRespostas () {
+    respostas = ["texto-correta0", "resposta-incorreta${i}1", "resposta-incorreta${i}2", "resposta-incorreta${i}3", "resposta-incorreta${i}4"];
+    respostas.sort(comparador);
+}
+
+function comparador () {
+    return Math.random() - 0.5;
+}
+
 function enviarQuizz () {
     quizzEnivar = {
         title: tituloQuizz,
@@ -400,3 +409,4 @@ function enviarQuizz () {
     }
     const promiseEnvio = axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes', quizzEnviar)
 }
+

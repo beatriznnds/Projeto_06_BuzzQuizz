@@ -22,9 +22,13 @@ let descricaoNivel;
 let respostas = [];
 
 
-const QuizzAPI = 'https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes'
+const QuizzAPI = 'https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes';
 let listaQuizzes = [];
-
+let posicao;
+let niveisQuizz = [];
+let numeroDeAcertos = 0;
+let numeroDePeguntasRespondidas = 0;
+let listaPerguntasQuizz = [];
 let quizzCriado = {
   title: "",
   image: "",
@@ -47,12 +51,109 @@ function carregarQuizzes(resposta) {
     for(let i=0;i<listaQuizzes.length;i++){
         let quizz = listaQuizzes[i];
         adicionaQuizz.innerHTML += `
-        <div class="lista-quizz"  style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz.image}) no-repeat center center / cover;">
+        <div id="${i}" class="lista-quizz" api-id="${quizz.id}" onclick="escolherQuizz(this)" style="background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizz.image}) no-repeat center center / cover;">
         <div class="nome-quizz">
             <p>${quizz.title}</p>
             </div>  
         </div>`;
     }
+}
+
+function alterarTela2(url, titulo, questoes, niveis){
+    const containerTela2 = document.querySelector(".pagina-3");
+    containerTela2.innerHTML +=`
+    <div class="quizz-atual" style="background: url(${url}) no-repeat center center / cover;">
+        <div class="quizz-nome">${titulo}</div>
+    </div>
+    `;
+    for(let i=0;i<questoes.length;i++){
+        let respostas = questoes[i].answers;
+        respostas.sort(comparador);
+
+        containerTela2.innerHTML +=`
+        <div class="quizz-card">
+            <div class="quizz-pergunta numero${i}" style="background-color: ${questoes[i].color}">
+                <span>${questoes[i].title}</span>
+            </div>
+        </div>
+        `;
+        
+        if(respostas.length%2 === 0){
+            for(let j=0; j<respostas.length/2; j++){
+                containerTela2.querySelector(".quizz-card").innerHTML +=`
+                <div class="quizz-opcoes">
+                    <div class="quizz-opcao" onclick="verificarResposta(this)">
+                        <img src="${respostas[j*2].image}" alt="" />
+                        <span>${respostas[j*2].text}</span>
+                    </div>
+                    <div class="quizz-opcao" onclick="verificarResposta(this)">
+                        <img src="${respostas[j*2+1].image}" alt="" />
+                        <span>${respostas[j*2+1].text}</span>
+                    </div>
+                </div>
+                `;
+            }
+        }else{
+            containerTela2.querySelector(".quizz-card").innerHTML +=`
+            <div class="quizz-opcoes">
+                <div class="quizz-opcao" onclick="verificarResposta(this)">
+                    <img src="${respostas[0].image}" alt="" />
+                    <span>${respostas[0].text}</span>
+                </div>
+                <div class="quizz-opcao" onclick="verificarResposta(this)">
+                    <img src="${respostas[1].image}" alt="" />
+                    <span>${respostas[1].text}</span>
+                </div>
+                <div class="quizz-opcao" onclick="verificarResposta(this)">
+                    <img src="${respostas[2].image}" alt="" />
+                    <span>${respostas[2].text}</span>
+                </div>
+            </div>
+            `;
+        }
+    }
+}
+
+function verificarResposta(elemento){
+    numeroDePeguntasRespondidas++;
+    const conjuntoRespostas = elemento.parentNode.parentNode;
+    numeroDaPergunta = Number(conjuntoRespostas.classList[1].replace("numero", ""));
+    conjuntoRespostas.querySelectorAll(".quizz-opcao").forEach(aplicarOpacidade);
+    elemento.classList.remove("outras-respostas");
+}
+
+function aplicarOpacidade(item, index){
+    item.classList.add("outras-respostas");
+    item.onclick = "";
+    if(listaPerguntasQuizz[numeroDaPergunta].answers[index].isCorrectAnswer){
+        item.classList.add("resposta-certa");
+    }else{
+        item.classList.add("resposta-errada");
+    }
+}
+
+function visualizarTela2(){
+    document.querySelector(".pagina-1").classList.add("escondido");
+    document.querySelector(".pagina-2").classList.add("escondido");
+    document.querySelector(".pagina-3").classList.remove("escondido");
+    document.querySelector(".quizz-atual").scrollIntoView(false);
+    numeroDeAcertos = 0;
+    numeroDePeguntasRespondidas = 0;
+}
+
+function escolherQuizz(elemento){
+    posicao = Number(elemento.id);
+    const quizzSelecionado = listaQuizzes[posicao];
+    const urlImagem = quizzSelecionado.image;
+    const tituloQuizz = quizzSelecionado.title;
+    const questoesQuizz = quizzSelecionado.questions;
+
+    niveisQuizz = quizzSelecionado.levels;
+
+    alterarTela2(urlImagem, tituloQuizz, questoesQuizz, niveisQuizz);
+
+    visualizarTela2();
+    listaPerguntasQuizz = questoesQuizz;
 }
 
 function paginaCriarQuizz () {    

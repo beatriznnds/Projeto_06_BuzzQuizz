@@ -4,7 +4,7 @@
 
 body{
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 80px;
+    background-color: #FAFAFA;
 }
 
 header {
@@ -54,6 +54,7 @@ p {
     background-color: transparent;
     width: 135px;
     height: 40px;
+    cursor: pointer;
 }
 
 .opcoes-quizz {
@@ -124,11 +125,9 @@ p {
 }
 
 .quizz-atual{
-    margin-top: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url("./img/Rectangle42.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 227px;
@@ -146,7 +145,7 @@ p {
 .quizz-card{
     background-color: white;
     padding: 20px 36px;
-    width: 759px;
+    box-shadow: 0px 0px 10px 0px #0000000D;
 }
 
 .quizz-pergunta{
@@ -155,11 +154,11 @@ p {
     justify-content: center;
     height: 138px;
     width: 688px;
-    background-color: #434CA0;
     margin-bottom: 20px;
 }
 
 .quizz-pergunta span{
+    text-align: center;
     color: white;
     font-size: 23px;
     font-weight: 700;
@@ -186,6 +185,18 @@ p {
     color: black;
     font-size: 20px;
     font-weight: 700;
+}
+
+.resposta-certa{
+    color: #FF4B4B;
+}
+
+.resposta-errada{
+    color: #009C22;
+}
+
+.outras-respostas{
+    opacity: 0.3;
 }
 
 .pagina-3{
